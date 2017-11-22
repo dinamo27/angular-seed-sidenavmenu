@@ -1,0 +1,12 @@
+{
+	"test": {
+		"quickSearchUrl": "http://localhost:8080/QuickSearch/com/rest/restService/quickSearch",
+		"listCrociereUrl": "http://localhost:8080/QuickSearch/com/rest/restService/listCrociere",
+		"dialogUrl": "../dialog/tabDialog.tmpl.html"
+	},
+	"prod": {
+		"quickSearchUrl": "http://nasrv034:8080/QuickSearch/com/rest/restService/quickSearch",
+		"listCrociereUrl": "http://nasrv034:8080/QuickSearch/com/rest/restService/listCrociere",
+		"dialogUrl": "/angular-seed/app/dialog/tabDialog.tmpl.html"
+	}
+}

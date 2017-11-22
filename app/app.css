@@ -1,0 +1,228 @@
+/* app css stylesheet */
+.menu {
+	list-style: none;
+	border-bottom: 0.1em solid black;
+	margin-bottom: 2em;
+	padding: 0 0 0.5em;
+}
+
+.menu:before {
+	content: "[";
+}
+
+.menu:after {
+	content: "]";
+}
+
+.menu>li {
+	display: inline;
+}
+
+.menu>li+li:before {
+	content: "|";
+	padding-right: 0.3em;
+}
+
+.inputdemoErrors .inputErrorsApp {
+	min-height: 48px;
+}
+
+.inputdemoErrors md-input-container>p {
+	font-size: 0.8em;
+	text-align: left;
+	width: 100%;
+}
+
+.glyphicon.spinning {
+	animation: spin 1s infinite linear;
+	-webkit-animation: spin2 1s infinite linear;
+}
+
+@
+keyframes spin {from { transform:scale(1)rotate(0deg);
+	
+}
+
+to {
+	transform: scale(1) rotate(360deg);
+}
+
+}
+@
+-webkit-keyframes spin2 {from { -webkit-transform:rotate(0deg);
+	
+}
+
+to {
+	-webkit-transform: rotate(360deg);
+}
+
+}
+div.label.ng-binding {
+	color: rgba(0, 0, 0, .54) !important;
+}
+
+#cruisesList {
+	max-width: auto !important;
+	max-height: auto !important;
+}
+
+/*loader*/
+.glyphicon.slow-right-spinner {
+    -webkit-animation: glyphicon-spin-r 3s infinite linear;
+    animation: glyphicon-spin-r 3s infinite linear;
+}
+@-webkit-keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@-webkit-keyframes glyphicon-spin-l {
+    0% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes glyphicon-spin-l {
+    0% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+md-card md-card-header {
+	background-color: #003 !important;
+}
+
+md-card md-card-header md-card-avatar {
+    width: auto !important;
+    height: auto !important;
+}
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+	background-color: #003 !important;
+}
+
+md-card-header-text span.md-subhead {
+    color: #fff !important;
+    font-size: 24px !important;
+    padding-top: 10px !important;
+}
+
+.msc-button {
+    background-color: #003 !important;
+    color: #fff;
+}
+.docs-logotype {
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    font-size: 26px;
+}
+.docs-logo > img {
+    height: 150px;
+    width: auto;
+    display: block;
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+.nav-header {
+    background-color: #003;
+    background: -webkit-linear-gradient(#003, #003);
+    background: linear-gradient(#003, #003);
+    border-bottom: 1px solid #003;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    z-index: 2;
+}
+.docs-logo {
+    text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 0 0 16px;
+    margin: 0 auto;
+}
+.main-sidenav {
+    width: 272px;
+    min-width: 272px;
+    max-width: 272px;
+}
+md-content.md-default-theme {
+    background-color: #eee;
+  }
+  md-card {
+    background-color: #fff;
+  }
+  md-card h2:first-of-type {
+    margin-top: 0;
+  }
+  md-toolbar .md-button.md-default-theme {
+    border-radius: 99%; 
+  }
+  h2 {
+    font-weight: 400;
+  }
+  .md-toolbar-tools-bottom {
+    font-size: small;
+  }
+  .md-toolbar-tools-bottom:last-child {
+      opacity: 0.8;
+  }
+  md-toolbar:not(.md-hue-1),
+  .md-fab {
+    fill: #fff;
+  }
+  md-sidenav {
+    fill: #737373;
+  }
+  md-sidenav  ng-md-icon {
+      position: relative;
+      top: 5px; 
+  }
+  .user-avatar {
+    border-radius: 99%;
+  }
+  
+  a {
+    text-decoration: none;
+    color: gray;
+  }

@@ -1,0 +1,120 @@
+<md-dialog aria-label="Cruises" id="cruisesList" height="auto" width="auto">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{customer.anagrafica.nome}} {{customer.anagrafica.cognome}} - {{customer.anagrafica.dataNascita}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content >
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="General Info">
+          <md-content class="md-padding">
+
+			 <md-input-container >
+		        <label>CardNR</label>
+		        <input ng-model="customer.cardnr" ng-readonly="true" >
+		      </md-input-container>
+		      <md-input-container>
+		        <label>Email</label>
+		        <input ng-model="customer.anagrafica.email" ng-readonly="true">
+		      </md-input-container>
+		      <md-input-container>
+		        <label>Points</label>
+		        <input ng-model="customer.punti" ng-readonly="true" >
+		      </md-input-container>
+		      <md-input-container>
+		        <label>Qualified</label>
+		        <input ng-model="customer.abilitata == 1? 'YES' : 'NO'" ng-readonly="true">
+		      </md-input-container>
+		      <md-input-container>
+		        <label>Registration Data</label>
+		        <input ng-model="customer.dataAbil" ng-readonly="true">
+		      </md-input-container>
+		      <!-- <md-input-container>
+		        <label>Address</label>
+		        <textarea class="span6" rows="3" ng-model="customer.anagrafica.completeAddress" ng-readonly="true" ></textarea>
+		      </md-input-container> -->
+		      <md-input-container>
+		        <label>Address</label>
+		        <input ng-model="customer.anagrafica.indirizzoRes" ng-readonly="true">
+		      </md-input-container>
+		      <md-input-container>
+		        <label>City</label>
+		        <input ng-model="customer.anagrafica.cittaRes" ng-readonly="true">
+		      </md-input-container>
+		      <md-input-container>
+		        <label>Province</label>
+		        <input ng-model="customer.anagrafica.provinciaRes" ng-readonly="true">
+		      </md-input-container>
+		      <md-input-container>
+		        <label>ZipCode</label>
+		        <input ng-model="customer.anagrafica.zipCodeRes" ng-readonly="true">
+		      </md-input-container>
+			
+          </md-content>
+        </md-tab>
+        <md-tab label="Cruise Point Details">
+          <md-content class="md-padding">
+			<md-table-container>
+				<table md-table multiple ng-model="selected">
+					<thead md-head>
+						<tr md-row>
+							<th md-column md-numeric >Cruise Code</th>
+							<th md-column md-numeric >Booking Number</th>
+							<th md-column md-numeric >Cabin Number</th>
+							<th md-column md-numeric>Embark Date</th>
+							<th md-column><span>Disembark Date</span></th>
+							 <th md-column><span>Nights</span></th> 
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row md-select="cruise" md-select-id="name" md-auto-select
+							ng-repeat="cruise in cruises | limitTo: queryCruise.limit : (queryCruise.page -1) * queryCruise.limit">
+							<td md-cell>{{cruise.codiceCro}}</td>
+							<td md-cell>{{cruise.bookingNo}}</td> 
+							<td md-cell>{{cruise.cabina}}</td> 
+							<td md-cell>{{cruise.dataImbarco}}</td>
+							<td md-cell>{{cruise.dataSbarco}}</td>
+							<td md-cell>{{cruise.notti}}</td> 
+			
+						</tr>
+					</tbody>
+				</table>
+				</md-table-container> 
+				<md-table-pagination md-limit="queryCruise.limit"
+					md-limit-options="limitOptions" md-page="queryCruise.page"
+					md-total="{{totalCruises}}" md-page-select>
+				</md-table-pagination> <!-- FIne table -->
+          </md-content>
+        </md-tab>
+        <md-tab label="Bonus Point Details">
+          <md-content class="md-padding">
+			 <md-input-container >
+		        <label>Generic Bonus Point</label>
+		        <input ng-model="customer.bonus" ng-readonly="true" >
+		      </md-input-container>
+		      <md-input-container>
+		        <label>Revenue Bonus Point</label>
+		        <input ng-model="customer.bonusRevenue" ng-readonly="true" >
+		      </md-input-container>
+		      <md-input-container>
+		        <label>Total bonus point</label>
+		        <input ng-model="customer.bonusTotali" ng-readonly="true" >
+		      </md-input-container>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="msc-button" ng-click="cancel()" style="margin-right:20px;" >
+        Close
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

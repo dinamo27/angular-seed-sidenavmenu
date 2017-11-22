@@ -1,0 +1,164 @@
+<md-content class="md-padding">
+	<div layout="column">
+
+		<md-card>
+			<md-card-header>
+				<md-card-avatar>
+
+					<img src="img/logo.jpg" /> </md-card-avatar>
+				<md-card-header-text>
+					<span class="md-subhead">Quick Search
+					</span>
+				</md-card-header-text>
+			</md-card-header>
+			<md-card-content>
+				<md-content layout-padding>
+					<form name="resultForm" my-enter="submit(info)">
+
+						<div layout="row">
+							<md-input-container flex="10">
+								<label>Search by:
+								</label>
+								<md-select name="type" ng-model="info.type" required ng-change="setValidationPattern()">
+									<md-option value="card">Card</md-option>
+									<md-option value="name">Name</md-option>
+									<md-option value="email">Email</md-option>
+								</md-select>
+							</md-input-container>
+						</div>
+						<div layout="row">
+
+							<md-input-container flex="50">
+								<label>{{labelClientInfo}}</label>
+								<input ng-minlength="{{minLenght}}" required name="clientInfo" ng-model="info.clientInfo"
+								 ng-pattern="validationPattern">
+								<div ng-messages="resultForm.clientInfo.$error">
+									<div ng-show="!resultForm.clientInfo.$valid && !resultForm.clientInfo.$error.minlength" ng-message="required">This is required.</div>
+									<div ng-show="!resultForm.clientInfo.$valid" ng-message="pattern">Pattern not valid.</div>
+									<div ng-show="resultForm.clientInfo.$error.minlength" ng-message="pattern">Almost 3 digit.</div>
+
+								</div>
+							</md-input-container>
+
+							<md-input-container ng-show="info.type == 'name'" flex="50">
+								<label>Surname</label>
+								<input ng-minlength="{{minLenght}}" ng-required="info.type == 'name'" name="clientInfoSurname" ng-model="info.clientInfoSurname"
+								 ng-pattern="validationPattern">
+								<div ng-messages="resultForm.clientInfoSurname.$error">
+									<div ng-show="!resultForm.clientInfoSurname.$valid && !resultForm.clientInfoSurname.$error.minlength" ng-message="required">This is required.</div>
+									<div ng-show="!resultForm.clientInfoSurname.$valid" ng-message="pattern">Pattern not valid.</div>
+									<div ng-show="resultForm.clientInfoSurname.$error.minlength" ng-message="pattern">Almost 3 digit.</div>
+
+
+								</div>
+							</md-input-container>
+
+
+							<md-button flex="5" md-no-ink type="button" class="msc-button" ng-click="submit(info)">Submit
+								<span ng-class="loading == true? 'glyphicon glyphicon-repeat slow-right-spinner' : 'none'"></span>
+							</md-button>
+						</div>
+
+					</form>
+				</md-content>
+			</md-card-content>
+		</md-card>
+
+		<!--  NO RESULTS FOUNDED -->
+		<md-card id="card-no-results" ng-show="cardResults == 'noResults'">
+			<md-card-header>
+				<md-card-avatar>
+					<img src="img/logo.jpg" /> </md-card-avatar>
+				<md-card-header-text>
+					<span class="md-subhead">Results</span>
+				</md-card-header-text>
+			</md-card-header>
+			<md-card-content>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="md-headline">No results found</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-content layout-padding> </md-content>
+			</md-card-content>
+		</md-card>
+
+
+		<!--  RESULTS FOUNDED -->
+		<md-card id="card-results" ng-show="cardResults == 'listResults'">
+			<md-card-header>
+				<md-card-avatar>
+					<img src="img/logo.jpg" /> </md-card-avatar>
+				<md-card-header-text>
+					<span class="md-subhead">Results</span>
+				</md-card-header-text>
+			</md-card-header>
+			<md-card-content>
+				<md-content md-theme="docs-dark" layout-padding="">
+					<!-- Inizio table -->
+					<!-- exact table from live demo -->
+					<md-table-container>
+						<table md-table multiple ng-model="selected">
+							<thead md-head md-order="query.order" md-on-reorder="submit">
+								<tr md-row>
+									<th md-column md-numeric md-order-by="customer.cardnr">CardNR</th>
+									<th md-column md-numeric>Points</th>
+									<th md-column>
+										<span>Type of Pass</span>
+									</th>
+									<th md-column>
+										<span>Name</span>
+									</th>
+									<th md-column>Surname</th>
+									<th md-column>Date of Birth</th>
+									<th md-column>Address</th>
+									<th md-column>City</th>
+									<th md-column></th>
+								</tr>
+							</thead>
+							<tbody md-body>
+								<tr md-row md-select="customer" md-select-id="name" md-auto-select ng-repeat="customer in customers | limitTo: query.limit : (query.page -1) * query.limit">
+									<td md-cell>{{customer.cardnr}}</td>
+									<td md-cell>{{customer.punti}}</td>
+									<td md-cell>{{tipoCardFunc(customer.punti)}}</td>
+									<td md-cell>{{customer.anagrafica.nome}}</td>
+									<td md-cell>{{customer.anagrafica.cognome}}</td>
+									<td md-cell>{{customer.anagrafica.dataNascita}}</td>
+									<td md-cell>{{customer.anagrafica.indirizzoRes}}</td>
+									<td md-cell>{{customer.anagrafica.cittaRes}}</td>
+									<td md-cell>
+										<md-button class="msc-button" ng-click="showTabDialog($event, customer)">
+											More info</md-button>
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</md-table-container>
+					<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{totalCustomers}}"
+					 md-page-select></md-table-pagination>
+					<!-- FIne table -->
+				</md-content>
+			</md-card-content>
+		</md-card>
+
+	</div>
+
+	<!-- sidenav -->
+	<md-sidenav class="md-sidenav-right" style="width: 100% !important" md-component-id="right" md-disable-backdrop="">
+
+		<md-toolbar class="md-theme-indigo">
+			<h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+		</md-toolbar>
+
+		<md-content layout-margin="">
+			<p>
+				This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
+			</p>
+			<md-button ng-click="toggleRight()" class="md-accent">
+				Close this Sidenav
+			</md-button>
+		</md-content>
+
+	</md-sidenav>
+</md-content>
