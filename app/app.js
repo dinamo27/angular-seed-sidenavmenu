@@ -35,15 +35,11 @@ angular.module('myApp', [
 			})
 			.when('/friends', {
 				templateUrl: 'view2/view2.html',
-				controller: function () {
-					console.log('friends controller');
-				}
+				controller: 'View2Ctrl'
 			})
 			.when('/messages', {
 				templateUrl: 'view1/view1.html',
-				controller: function () {
-					console.log('messages controller');
-				}
+				controller: 'View1Ctrl'
 			})
 
 	}])
